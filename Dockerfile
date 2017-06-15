@@ -20,6 +20,10 @@ RUN apk add --update --no-cache git flex make gcc g++ bison python-dev linux-hea
 	python setup.py install && \
 	cd ../ && \
 
-	apk del make gcc g++ flex bison linux-headers
+	apk del make gcc g++ flex bison linux-headers && \
 
-ENTRYPOINT /bin/sh
+	rm *.dts && \
+
+ENTRYPOINT /bin/sh && \
+	mkdir -p /sys/kernel/config/device-tree/overlays/spi && \
+	su -c 'cat spi_devicetree_overlay.dtb > /sys/kernel/config/device-tree/overlays/spi/dtbo' &
