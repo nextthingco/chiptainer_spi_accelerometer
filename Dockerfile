@@ -20,9 +20,7 @@ RUN apk add --update --no-cache git flex make gcc g++ bison python-dev linux-hea
 	python setup.py install && \
 	cd ../ && \
 
-	apk del make gcc g++ flex bison linux-headers && \
-
-	rm *.dts && \
+	apk del make gcc g++ flex bison linux-headers
 
 ENTRYPOINT /bin/sh && \
 	mkdir -p /sys/kernel/config/device-tree/overlays/spi && \
